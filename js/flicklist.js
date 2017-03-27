@@ -9,12 +9,7 @@ var api = {
   token: "429499992a4160acd83cf6b99dc9c8f6" // TODO 0 put your api key here
 }
 
-/**
- * Makes an AJAX request to themoviedb.org, asking for some movies
- * if successful, updates the model.browseItems appropriately, and then invokes
- * the callback function that was passed in
- */
-function discoverMovies(callback) {
+function discoverMovies(callback){
 	$.ajax({
 		url: api.root + "/discover/movie",
 		data: {
@@ -37,32 +32,28 @@ function discoverMovies(callback) {
  * re-renders the page with new content, based on the current state of the model
  */
 function render() {
-
-  // TODO 7
+  //clears the visual list first
   $('#section-watchlist ul').empty();
   $('#section-browse ul').empty();
 
-  // TODO 6
   // for each movie on the user's watchlist, insert a list item into the <ul> in the watchlist section
   model.watchlistItems.forEach((movie)=>{
-    var titleA = $('<p></p>').text(movie);
-    var titleliA = $('<li></li>').append(titleA);
-    $('#section-watchlist ul').append(titleliA);
+    var titleWatchlist = $('<p></p>').text(movie);
+    var titleWatchlistLi = $('<li></li>').append(titleWatchlist);
+    $('#section-watchlist ul').append(titleWatchlistLi);
   });
 
-  // for each movie on the current browse list,
   model.browseItems.forEach(function(movie) {
-		// TODO 3
 		// insert a list item into the <ul> in the browse section
-    var title = $('<p></p>').text(movie.original_title);
-    var titleli = $('<li></li>').append(title);
-    $('#section-browse ul').append(titleli);
+    var titleBrowse = $('<p></p>').text(movie.original_title);
+    var titleBrowseLi = $('<li></li>').append(titleBrowse);
+    $('#section-browse ul').append(titleBrowseLi);
 
 		// TODO 4
 		// the list item should include a button that says "Add to Watchlist"
     // titleli.append('<button> Add to Watchlist</button>');
     var myButton = $("<button></button>").text("Add to Watchlist");
-    titleli.append(myButton);
+    titleBrowseLi.append(myButton);
 
 		// TODO 5
 		// when the button is clicked, this movie should be added to the model's watchlist and render() should be called again
@@ -79,3 +70,49 @@ function render() {
 $(document).ready(function() {
   discoverMovies(render);
 });
+
+// function mergeArrays(a, b) {
+//     a.sort();
+//     b.sort();
+//     // var newA = a.split(",");
+//     var mergedArray = [];
+//     var ai = 0; // a index
+//     var bi = 0; // b index
+//     console.log("a: "+a);
+//     console.log(a.length + b.length)
+//
+//     while(mergedArray.length + 1 < (a.length + b.length)){
+//         if (a[ai] < b[bi])
+//         {
+//             mergedArray.push(a[ai]);
+//             ai += 1;
+//             console.log("mergedArray: "+mergedArray);
+//             console.log("a[ai]: "+a[ai]);
+//             console.log("ai: "+ai);
+//         }
+//         else if (b[bi] < a[ai])
+//         {
+//             mergedArray.push(b[bi]);
+//             bi += 1;
+//         }
+//         else if (a[ai] == b[bi])
+//         {
+//             mergedArray.push(a[ai]);
+//             ai += 1;
+//             mergedArray.push(b[bi]);
+//             bi += 1;
+//         }
+//         else
+//         {
+//             ai += 0;
+//             bi += 0;
+//         }
+//     }
+//
+//     return mergedArray;
+//
+// }
+
+function mergeArrays(a, b) {
+    return a.concat(b).sort();
+  }
