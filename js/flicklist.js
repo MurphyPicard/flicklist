@@ -1,5 +1,4 @@
 
-
 $(document).ready(function() {
   discoverMovies(render);
 });
@@ -39,7 +38,7 @@ function discoverMovies(callback) {
 
 
 /**
- * Makes an AJAX request to the /search/movie endpoint of the API, using the 
+ * Makes an AJAX request to the /search/movie endpoint of the API, using the
  * query string that was passed in
  *
  * if successful, updates model.browseItems appropriately and then invokes
@@ -69,7 +68,7 @@ function render() {
   model.watchlistItems.forEach(function(movie) {
     var title = $("<p></p>").text(movie.original_title);
     var itemView = $("<li></li>")
-      .append(title)
+      .append(title);
       // TODO 3
       // give itemView a class attribute of "item-watchlist"
 
@@ -106,9 +105,5 @@ function render() {
     // append the itemView to the list
     $("#section-browse ul").append(itemView);
   });
-  
+
 }
-
-
-
-
