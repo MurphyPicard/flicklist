@@ -3,22 +3,17 @@ $(document).ready(function() {
   discoverMovies(render);
 });
 
-
-
 var model = {
   watchlistItems: [],
   browseItems: []
 }
-
 
 var api = {
   root: "https://api.themoviedb.org/3",
   token: "429499992a4160acd83cf6b99dc9c8f6" // my key
 }
 
-
-/**
- * Makes an AJAX request to /discover/movie endpoint of the API
+ /* Makes an AJAX request to /discover/movie endpoint of the API
  *
  * if successful, updates the model.browseItems appropriately, and then invokes
  * the callback function that was passed in
@@ -39,21 +34,25 @@ function discoverMovies(callback) {
  * query string that was passed in
  * if successful, updates model.browseItems appropriately and then invokes
  * the callback function that was passed in*/
+
+
+
 function searchMovies(searchTerm, callback) {
   console.log("searching for movies with '" + searchTerm + "' in their title...");
   // TODO 9
   // implement this function as described in the comment above
   // you can use the body of discoverMovies as a jumping off point
-  // $.ajax({
-  //   url: api.root + "/discover/movie",
-  //   data: {
-  //     api_key: api.token
-  //   },
-  //   success: function(response) {
-  //     model.browseItems = response.results;
-  //     callback();
-  //   }
-  // });
+  $.ajax({
+    url: api.root + "/search/movie",
+    data: {
+      api_key: api.token,
+      query: searchTerm
+    },
+    success: function(response) {
+      model.browseItems = response.results;
+      callback();
+    }
+  });
 
 }
 

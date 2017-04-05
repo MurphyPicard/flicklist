@@ -40,18 +40,18 @@
   <script src="js/flicklist.js"></script>
 
   <script>
-    // TODO 8
-    // fill in the missing pieces of the code below
-    $("form").submit(function(evt) {
-      // first, we cancel the default action (which would leave the page)
-      evt.preventDefault();
-      // figure out what the user typed
-      var searchTerm = $("input").val();
-      // 8c invoke the searchMovies function,
-      // passing in the search term, and render as the callback
-      searchMovies(searchTerm, render);
+  // TODO 8
+  // fill in the missing pieces of the code below
+  $("form").submit(function(evt) {
+   // first, we cancel the default action (which would leave the page)
+   evt.preventDefault();
+   // figure out what the user typed
+   searchTerm = $("input").val();
+   // 8c invoke the searchMovies function,
+   // passing in the search term, and render as the callback
+   searchMovies(searchTerm, render);
 
-    });
+  });
   </script>
 
 </body>
