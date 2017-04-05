@@ -35,22 +35,25 @@ function discoverMovies(callback) {
     }
   });
 }
-
-
-/**
- * Makes an AJAX request to the /search/movie endpoint of the API, using the
+/* Makes an AJAX request to the /search/movie endpoint of the API, using the
  * query string that was passed in
- *
  * if successful, updates model.browseItems appropriately and then invokes
- * the callback function that was passed in
- */
+ * the callback function that was passed in*/
 function searchMovies(searchTerm, callback) {
   console.log("searching for movies with '" + searchTerm + "' in their title...");
-
   // TODO 9
   // implement this function as described in the comment above
   // you can use the body of discoverMovies as a jumping off point
-
+  // $.ajax({
+  //   url: api.root + "/discover/movie",
+  //   data: {
+  //     api_key: api.token
+  //   },
+  //   success: function(response) {
+  //     model.browseItems = response.results;
+  //     callback();
+  //   }
+  // });
 
 }
 
@@ -68,10 +71,8 @@ function render() {
   model.watchlistItems.forEach(function(movie) {
     var title = $("<p></p>").text(movie.original_title);
     var itemView = $("<li></li>")
-      .append(title);
-      // TODO 3
-      // give itemView a class attribute of "item-watchlist"
-
+                    .attr("class", "item-watchlist")
+                    .append(title);
     $("#section-watchlist ul").append(itemView);
   });
 
@@ -91,7 +92,7 @@ function render() {
     if(model.watchlistItems.indexOf(movie) !== -1){
       button.prop("disabled", true);
     }
-      
+
     // append everything to itemView, along with an <hr/>
     var itemView = $("<li></li>")
       .append($("<hr/>"))
